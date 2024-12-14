@@ -3,22 +3,50 @@ import Header from './Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TinderCards from './TinderCards';
 import SwipeButtons from "./SwipeButtons";
-
+import Chats from "./Chats"; // Import the Chats component
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <Router>
         <Routes>
-          <Route path="/chat" element={<h1>I am the chatpage</h1>} /> 
-          <Route path="/" element={<TinderCards />} /> 
+          {/* messages Chat Route with a Custom Header */}
+          <Route
+            path="/chat/"
+            element={
+              <>
+                <Header backButton="/chat" />
+                <Chats />
+              </>
+            }
+            />
+          {/* Chat Route with a Custom Header */}
+          <Route
+            path="/chat"
+            element={
+              <>
+                <Header backButton="/" />
+                <Chats />
+              </>
+            }
+          />
+
+          {/* Home Route with TinderCards and SwipeButtons */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <TinderCards />
+                <SwipeButtons />
+              </>
+            }
+          />
         </Routes>
-        <SwipeButtons />
       </Router>
     </div>
   );
 }
 
-export default App;  
+export default App;
